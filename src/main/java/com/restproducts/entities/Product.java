@@ -5,7 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "products")
@@ -15,19 +17,25 @@ public class Product {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "product_id")
 	private Long id;
-
+	
+	@NotBlank
 	@Column(name = "product_name")
 	private String name;
-
+	
+	@OneToOne
 	private Type type;
-
-	public Product() {
+	
+	private Float price;
+	
+	
+	private Product() {
 
 	}
-
-	public Product(String name, Type type) {
+	
+	public Product(String name, Type type, Float price) {
 		this.name=name;
 		this.type=type;
+		this.price=price;
 	}
 
 	public Long getId() {
@@ -52,6 +60,14 @@ public class Product {
 
 	public void setType(Type type) {
 		this.type = type;
+	}
+	
+	public Float getPrice() {
+		return this.price;
+	}
+	
+	public void setPrice(Float price) {
+		this.price = price;
 	}
 
 	@Override

@@ -6,23 +6,25 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "types")
 public class Type {
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "type_id")
 	private Long id;
 
+	@NotBlank
 	@Column(name = "type_name")
 	private String name;
 
-	public Type() {
+	private Type() {
 
 	}
-
+	
 	public Type(String name) {
 
 	}
