@@ -28,7 +28,7 @@ public class Product {
 	private Float price;
 	
 	
-	private Product() {
+	public Product() {
 
 	}
 	

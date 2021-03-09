@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,12 +19,11 @@ import com.restproducts.entities.Type;
 import com.restproducts.service.TypeService;
 
 @RestController
-@RequestMapping("api/type")
+@RequestMapping(value="api/type", produces = MediaType.APPLICATION_JSON_VALUE)
 public class TypeController {
 
 	private TypeService typeService;
 
-	@Autowired
 	public TypeController(TypeService typeService) {
 		this.typeService = typeService;
 	}
@@ -33,7 +33,7 @@ public class TypeController {
 		return typeService.findAll();
 	}
 	
-	@PostMapping("/save")
+	@PostMapping(value="/save", consumes= MediaType.APPLICATION_JSON_VALUE)
 	public Type saveType(@Validated @RequestBody Type type) {
 		return typeService.save(type);
 	}
